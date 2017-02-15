@@ -7,13 +7,14 @@ $search_word = isset($_GET['q']) ? $_GET['q'] : 'qq头像女生带字';
 $typeid = isset($_GET['cid']) ? $_GET['cid'] : '1';
 //$search_word = 'qq头像女生带字';
 
-$search_word = rawurlencode($search_word);
 
-$json_url = 'http://image.baidu.com/search/acjson?tn=resultjson_com&ipn=rj&word='.$search_word.'&rn='.$def_num;
+$word = str_ireplace(['+',' '], [' ','%20'], $search_word);
+
+$json_url = 'http://image.baidu.com/search/acjson?tn=resultjson_com&ipn=rj&ie=utf-8&word='.$word.'&rn='.$def_num;
 $json_ret = curl_request($json_url);
 $json_arr = json_decode($json_ret,true);
 
-if($json_arr === null){
+if( strlen($json_ret) < 50 || $json_arr === null ){
 	$err_msg = 'cant get baidu json';
 	err_log( $err_msg .' '.$json_url );
 	die( $err_msg );
@@ -30,26 +31,22 @@ dd($obj_urls);
 $pic_urls = filter_url($obj_urls);
    
 $upload_urls = rolling_curl($pic_urls,'down_img');
-//$upload_urls = curl_check_url($pic_urls);
+//$upload_urls = curl_check_url($pic_urls);//  ["remote"=> "1","autolitpic"=> "1"]
 dd($upload_urls);
 
 $upload_urls = array_slice($upload_urls, 0, $down_num);
 
-//$typeid = 1; //1,2,3,4分别对应4个分类
-$click = mt_rand(100,500);
-$pubdate = date("Y-m-d H:i:s");
+$picname = $upload_urls[0];
 $title = handle_title($search_word);
-$picname = '';
 $body = handle_body($title,$upload_urls);
-
 
 $data_my = [
   "typeid"=> $typeid,
+  "picname" => $picname,  
   "title"=> $title,
-  "picname" => $picname,
   "body"=> $body,
-  "click"=> $click,
-  "pubdate"=> $pubdate
+  "click"=> mt_rand(100,500),
+  "pubdate"=> date("Y-m-d H:i:s")
 ];
 
 $data = array_merge($data_normal,$data_my);

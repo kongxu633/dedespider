@@ -6,7 +6,7 @@ define('DEBUG', false);
 $max_num = 30;
 
 //一次获取几张图片
-$def_num = 20;
+$def_num = 10;
 
 //需要下载几张图片
 $down_num = 4;
@@ -31,8 +31,8 @@ $data_normal = [
   "autokey"=> "1",
   "description"=> "",
   "dede_addonfields"=> "",
-  "remote"=> "1",
-  "autolitpic"=> "1",
+  "remote"=> "0",
+  "autolitpic"=> "0",
   "needwatermark"=> "0",
   "sptype"=> "hand",
   "spsize"=> "5",

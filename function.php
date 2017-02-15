@@ -239,6 +239,9 @@ function rolling_curl($urls, $callback, $custom_options = null) {
     $std_options = array(   CURLOPT_RETURNTRANSFER => true,
                             CURLOPT_FOLLOWLOCATION => false,
                             //CURLOPT_MAXREDIRS => 3
+                            CURLOPT_TIMEOUT => 5,
+                            CURLOPT_REFERER => 'http://image.baidu.com/',
+                            CURLOPT_USERAGENT => 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/6.0)'
                         );
     $options = ($custom_options) ? ($std_options + $custom_options) : $std_options;
 
@@ -258,13 +261,15 @@ function rolling_curl($urls, $callback, $custom_options = null) {
         while($done = curl_multi_info_read($master)) {
             $info = curl_getinfo($done['handle']);
 
-            if ( $info['http_code'] == 200 && strpos($info['content_type'],'image')!==false )  {
+            if ( $info['http_code'] == 200 ){
+                if( strpos($info['content_type'],'image')!==false ){
                 $output = curl_multi_getcontent($done['handle']);
                 $info['output'] = $output;
 
                 $full_path = $callback($info);
                 if(!empty($full_path)){
                     $back_arr[] = $full_path;
+                }                    
                 }
 
                 // start a new request (it's important to do this before removing the old one)
