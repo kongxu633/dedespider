@@ -1,3 +1,5 @@
-gexing.com
-duitang.com
-tuzhan.com
+.gexing.com
+.duitang.com
+.tuzhan.com
+.soso.com
+.jf258.com

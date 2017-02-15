@@ -28,7 +28,7 @@ function filter_url($obj_urls,$filter_file = 'data/filter.txt'){
     foreach ($obj_urls as $ourl) {
         $flag = true;
         foreach ($filter_words as $fword) {
-            if( strpos($ourl, $fword) !== false){
+            if( stripos($ourl, $fword) !== false){
                 $flag = false;
             }
         }
@@ -238,8 +238,9 @@ function rolling_curl($urls, $callback, $custom_options = null) {
     // add additional curl options here
     $std_options = array(   CURLOPT_RETURNTRANSFER => true,
                             CURLOPT_FOLLOWLOCATION => false,
-                            //CURLOPT_MAXREDIRS => 3
-                            CURLOPT_TIMEOUT => 5,
+                            //CURLOPT_MAXREDIRS => 3,
+                            CURLOPT_CONNECTTIMEOUT => 10,
+                            CURLOPT_TIMEOUT => 20,
                             CURLOPT_REFERER => 'http://image.baidu.com/',
                             CURLOPT_USERAGENT => 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/6.0)'
                         );

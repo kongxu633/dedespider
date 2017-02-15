@@ -34,6 +34,16 @@ $upload_urls = rolling_curl($pic_urls,'down_img');
 //$upload_urls = curl_check_url($pic_urls);//  ["remote"=> "1","autolitpic"=> "1"]
 dd($upload_urls);
 
+if( sizeof($upload_urls) < $down_num){
+	$err_msg = 'pic is less then need';
+	err_log( $err_msg .' '.$json_url );
+	err_log(print_r($obj_urls,1));
+	err_log(print_r($upload_urls,1));
+	die( $err_msg );
+}
+
+//这里应该要优化一下
+//10张图里面挑选出错误的图片 删除掉不用的图片
 $upload_urls = array_slice($upload_urls, 0, $down_num);
 
 $picname = $upload_urls[0];
