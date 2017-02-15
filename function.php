@@ -170,7 +170,7 @@ function curl_check_url($urls, $check_num = 5, $custom_options = null){
     $back_arr = [];
 
     $arr_size = sizeof($urls); 
-    $rolling_window = 5;
+    $rolling_window = 3;
     $rolling_window = ($arr_size < $rolling_window) ? $arr_size : $rolling_window;
 
     $master = curl_multi_init();

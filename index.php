@@ -38,6 +38,7 @@ if( sizeof($upload_urls) < $down_num){
 	$err_msg = 'pic is less then need';
 	err_log( $err_msg .' '.$json_url );
 	err_log(print_r($obj_urls,1));
+	err_log(print_r($pic_urls,1));
 	err_log(print_r($upload_urls,1));
 	die( $err_msg );
 }

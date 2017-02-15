@@ -29,7 +29,7 @@ foreach($words as $k => $v){
 	if($i++ > $user_num){
 		break;
 	}
-	$encode = urlencode(trim($v));
+	$encode = trim($v);
     $url=array($base_url.$encode);
 
     $callback=array('check_status',array($url[0]));
