@@ -50,15 +50,12 @@ $upload_urls = array_slice($upload_urls, 0, $down_num);
 $picname = $upload_urls[0];
 $title = handle_title($search_word);
 $body = handle_body($title,$upload_urls);
+$pubdate = date("Y-m-d H:i:s");
 
-$data_my = [
-  "typeid"=> $typeid,
-  "picname" => $picname,  
-  "title"=> $title,
-  "body"=> $body,
-  "click"=> mt_rand(100,500),
-  "pubdate"=> date("Y-m-d H:i:s")
-];
+//重写 typeid arcrank isthml click picname title body
+$data_my = compact('arcrank','ishtml','click','typeid','picname','title','body','pubdate');
+
+dd($data_my);
 
 $data = array_merge($data_normal,$data_my);
 
