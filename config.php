@@ -1,18 +1,21 @@
 <?php
 
-define('DEBUG', false);
+define('DEBUG', true);
 
 //后台发布地址
-$post_url = 'http://127.0.0.1/dede/article_add.php';
+$post_url = 'http://192.168.31.181:8081/qqbiaoqing/dede/article_add.php';
 
 //登录cookies
-$login_cookie = 'menuitems=1_1%2C2_1%2C3_1; DedeUserID=1; DedeUserID__ckMd5=3f75bd49b6d3f9f3; DedeLoginTime=1487163115; DedeLoginTime__ckMd5=e90a845fcc47f512; PHPSESSID=k1k2imqfmbv2h4l98vfppbtvb4';
+$login_cookie = 'menuitems=1_1%2C2_1%2C3_1; PHPSESSID=1p73999j2acif4nfv9iv7ioa83; DedeUserID=1; DedeUserID__ckMd5=29e004087f57ecda; DedeLoginTime=1487218133; DedeLoginTime__ckMd5=da2f7d733bb0b571';
 
 //从百度获取json链接
 $json_base_url = 'http://image.baidu.com/search/acjson?tn=resultjson_com&ipn=rj&ie=utf-8';
 
 //蜘蛛目录
 $exe_base_url = 'http://127.0.0.1/dedespider/';
+
+//图片保存目录
+$upload_dir = '../uploads/allimg/';
 
 //默认最多采集几个关键词
 $max_num = 30;

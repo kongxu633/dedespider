@@ -294,13 +294,17 @@ function rolling_curl($urls, $callback, $custom_options = null) {
     return $back_arr;
 }
 
-function down_img($info,$dir='../uploads/allimg'){
+function down_img($info,$dir='../uploads/allimg/'){
+
+    global $upload_dir;
+
+    $dir = $upload_dir;
 
     $url = $info['url'];
     $data = $info['output'];
     $ext = substr($url, strrpos($url, '.'));
 
-    $dir = $dir . '/' . date('ymd');
+    $dir = $dir . date('ymd');
     $file_name = time().mt_rand(100,999).$ext;
 
     $full_path = $dir . '/' . $file_name;
