@@ -14,7 +14,7 @@ if (is_null($user_num)) {
 	$user_num = $max_num;
 }
 
-$base_url='http://127.0.0.1/dedespider/?cid='.$cid.'&q=';
+$base_url = $exe_base_url . 'index.php?cid='.$cid.'&q=';
 
 $file_name = 'data/' . $cid . '.txt';
 $words = file($file_name,FILE_IGNORE_NEW_LINES);

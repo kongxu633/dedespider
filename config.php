@@ -11,6 +11,9 @@ $login_cookie = 'menuitems=1_1%2C2_1%2C3_1; DedeUserID=1; DedeUserID__ckMd5=3f75
 //从百度获取json链接
 $json_base_url = 'http://image.baidu.com/search/acjson?tn=resultjson_com&ipn=rj&ie=utf-8';
 
+//蜘蛛目录
+$exe_base_url = 'http://127.0.0.1/dedespider/';
+
 //默认最多采集几个关键词
 $max_num = 30;
 

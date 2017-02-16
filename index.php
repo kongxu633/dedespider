@@ -10,7 +10,7 @@ $typeid = isset($_GET['cid']) ? $_GET['cid'] : '1';
 
 $word = str_ireplace(['+',' '], [' ','%20'], $search_word);
 
-$json_url = 'http://image.baidu.com/search/acjson?tn=resultjson_com&ipn=rj&ie=utf-8&word='.$word.'&rn='.$def_num;
+$json_url = $json_base_url . '&word='.$word.'&rn='.$def_num;
 $json_ret = curl_request($json_url);
 $json_arr = json_decode($json_ret,true);
 
@@ -48,7 +48,7 @@ if( sizeof($upload_urls) < $down_num){
 $upload_urls = array_slice($upload_urls, 0, $down_num);
 
 $picname = $upload_urls[0];
-$title = handle_title($search_word);
+$title = $search_word;	//handle_title($search_word);
 $body = handle_body($title,$upload_urls);
 $pubdate = date("Y-m-d H:i:s");
 
@@ -63,8 +63,4 @@ dd($data);
 
 $ret = curl_request($post_url,$data,$login_cookie);
 
-if(strpos($ret, '成功发布文章')!==false){
-	echo "post success words:" . $search_word . "<br/>\r\n";
-}else{
-	die('post article error');
-}
+dd($ret);
