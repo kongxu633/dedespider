@@ -30,10 +30,12 @@ foreach($words as $k => $v){
 		break;
 	}
 	$encode = trim($v);
-    $url=array($base_url.$encode);
+	if(!empty($encode)){
+	    $url=array($base_url.$encode);
 
-    $callback=array('check_status',array($url[0]));
-    $curl->add($url,$callback);
+	    $callback=array('check_status',array($url[0]));
+	    $curl->add($url,$callback);
+	}
 }
 $curl->go();
 
